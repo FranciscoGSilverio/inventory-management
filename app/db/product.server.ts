@@ -27,3 +27,9 @@ export async function getProducts(params: GetProductsParams = {}) {
       : undefined,
   });
 }
+
+export async function deleteProduct(id: string) {
+  return prisma.product.delete({
+    where: { id },
+  });
+}
