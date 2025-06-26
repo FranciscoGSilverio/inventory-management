@@ -1,3 +1,4 @@
+import { useNavigate } from "@remix-run/react";
 import {
   Table,
   TableBody,
@@ -13,6 +14,7 @@ type ProductTableProps = {
 };
 
 export default function CustomTable({ products }: ProductTableProps) {
+  const navigate = useNavigate();
   return (
     <Table>
       <TableHeader>
@@ -25,7 +27,11 @@ export default function CustomTable({ products }: ProductTableProps) {
       </TableHeader>
       <TableBody>
         {products.map((product) => (
-          <TableRow key={product.id}>
+          <TableRow
+            key={product.id}
+            onClick={() => navigate(`/product/${product.id}`)}
+            className="cursor-pointer hover:bg-gray-100"
+          >
             <TableCell>{product.name}</TableCell>
             <TableCell>${product.price.toFixed(2)}</TableCell>
             <TableCell>{product.stock}</TableCell>

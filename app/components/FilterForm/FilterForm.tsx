@@ -11,7 +11,7 @@ export const FilterForm = () => {
   return (
     <section className="shadow-lg rounded-full mt-3 border flex flex-col items-center justify-center p-5 max-w-[800px] mx-auto">
       <h1 className="text-2xl font-bold text-center">
-        Welcome to the Inventory Management App
+        Inventory Management App
       </h1>
       <p className="text-center mt-4">
         This app helps you manage your product inventory efficiently.
