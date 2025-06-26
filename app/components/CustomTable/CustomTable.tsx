@@ -17,7 +17,7 @@ export default function CustomTable({ products }: ProductTableProps) {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>ID</TableHead>
+          <TableHead>Name</TableHead>
           <TableHead>Name</TableHead>
           <TableHead>Price</TableHead>
           <TableHead>Quantity</TableHead>

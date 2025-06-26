@@ -1,29 +1,34 @@
 import CustomTable from "app/components/CustomTable/CustomTable";
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { Product } from "types/Product";
-import { getAllProducts } from "~/db/product.server";
+import { getProducts } from "~/db/product.server";
 import { useLoaderData } from "@remix-run/react";
+
+import { FilterForm } from "~/components/FilterForm/FilterForm";
 
 export const meta: MetaFunction = () => {
   return [{ title: "Inventory Management App" }];
 };
 
-export const loader: LoaderFunction = async () => {
-  const products = await getAllProducts();
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const url = new URL(request.url);
+  const query = url.searchParams.get("product")?.trim() || "";
+
+  const products = await getProducts({
+    name: query ? query : undefined,
+  });
+
   return Response.json({ products });
 };
 
 export default function Index() {
-  const products = useLoaderData<{ products: Product[] }>().products;
+  const { products } = useLoaderData<{ products: Product[] }>();
+
   return (
     <div className="w-full h-full">
-      <h1 className="text-2xl font-bold text-center mt-10">
-        Welcome to the Inventory Management App
-      </h1>
-      <p className="text-center mt-4">
-        This app helps you manage your product inventory efficiently.
-      </p>
-      <div className="max-w-[1500px] mx-auto mt-5">
+      <FilterForm />
+
+      <div className="max-w-[80%] mx-auto mt-5 mb-5">
         <CustomTable products={products} />
       </div>
     </div>
