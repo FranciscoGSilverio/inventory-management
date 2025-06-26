@@ -7,4 +7,6 @@ export type Product = {
   stock: number;
   category: string;
   avgRating: number;
+  createdAt: string;
+  updatedAt: string;
 };
