@@ -10,3 +10,5 @@ export type Product = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type ProductDto = Omit<Product, "id" | "createdAt" | "updatedAt">;

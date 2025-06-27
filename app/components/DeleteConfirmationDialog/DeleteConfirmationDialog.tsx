@@ -19,7 +19,6 @@ export const DeleteConfirmationDialog: FC<DeleteConfirmationDialogProps> = ({
       onOpenChange={setOpen}
       title="Confirm Delete"
       description="Are you sure you want to delete this item?"
-      trigger={<Button variant="outline">Open Dialog</Button>}
       footer={
         <>
           <Button variant="outline" onClick={() => setOpen(false)}>

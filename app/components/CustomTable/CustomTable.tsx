@@ -7,7 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "app/components/ui/table";
-import { Pencil, Trash } from "lucide-react";
+import { Pencil, PlusCircle, Trash } from "lucide-react";
 import { Product } from "types/Product";
 import { Button } from "app/components/ui/button";
 
@@ -15,22 +15,29 @@ type ProductTableProps = {
   products: Product[];
   deleteCallback?: (id: string) => void;
   editCallback?: (id: string) => void;
+  createCallback?: () => void;
 };
 
 export default function CustomTable({
   products,
   deleteCallback,
   editCallback,
+  createCallback,
 }: ProductTableProps) {
   const navigate = useNavigate();
   return (
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Name</TableHead>
-          <TableHead>Name</TableHead>
+          <TableHead className="flex items-center">
+            <Button variant="ghost" onClick={() => createCallback?.()}>
+              <PlusCircle />
+            </Button>
+            Name
+          </TableHead>
           <TableHead>Price</TableHead>
           <TableHead>Quantity</TableHead>
+          <TableHead>Average Rating</TableHead>
           <TableHead>Actions</TableHead>
         </TableRow>
       </TableHeader>
