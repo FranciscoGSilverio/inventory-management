@@ -35,10 +35,10 @@ export default function CustomTable({
             </Button>
             Name
           </TableHead>
-          <TableHead>Price</TableHead>
-          <TableHead>Quantity</TableHead>
-          <TableHead>Average Rating</TableHead>
-          <TableHead>Actions</TableHead>
+          <TableHead className="text-center">Price</TableHead>
+          <TableHead className="text-center">Quantity</TableHead>
+          <TableHead className="text-center">Average Rating</TableHead>
+          <TableHead className="text-center">Actions</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -49,10 +49,10 @@ export default function CustomTable({
             className="cursor-pointer hover:bg-gray-100"
           >
             <TableCell>{product.name}</TableCell>
-            <TableCell>${product.price.toFixed(2)}</TableCell>
-            <TableCell>{product.stock}</TableCell>
-            <TableCell>{product.avgRating}</TableCell>
-            <TableCell>
+            <TableCell className="text-center">${product.price.toFixed(2)}</TableCell>
+            <TableCell className="text-center">{product.stock}</TableCell>
+            <TableCell className="text-center">{product.avgRating}</TableCell>
+            <TableCell className="text-center">
               <>
                 <Button
                   variant="ghost"

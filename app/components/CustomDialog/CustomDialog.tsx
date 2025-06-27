@@ -1,11 +1,10 @@
 import {
   Dialog,
-  DialogTrigger,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogDescription,
-  DialogFooter,
+  DialogPortal,
 } from "app/components/ui/dialog";
 import type { ReactNode } from "react";
 
@@ -16,7 +15,6 @@ type CustomDialogProps = {
   description?: string;
   children: ReactNode;
   footer?: ReactNode;
-  trigger?: ReactNode;
 };
 
 export function CustomDialog({
@@ -26,21 +24,19 @@ export function CustomDialog({
   description,
   children,
   footer,
-  trigger,
 }: CustomDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      {trigger && <DialogTrigger asChild>{trigger}</DialogTrigger>}
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>{title}</DialogTitle>
-          {description && <DialogDescription>{description}</DialogDescription>}
-        </DialogHeader>
-
-        <div className="py-4">{children}</div>
-
-        {footer && <DialogFooter>{footer}</DialogFooter>}
-      </DialogContent>
+      <DialogPortal>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{title}</DialogTitle>
+            <DialogDescription>{description}</DialogDescription>
+          </DialogHeader>
+          {children}
+          {footer && <>{footer}</>}
+        </DialogContent>
+      </DialogPortal>
     </Dialog>
   );
 }

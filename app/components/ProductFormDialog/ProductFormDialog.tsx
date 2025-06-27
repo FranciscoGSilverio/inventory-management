@@ -68,14 +68,14 @@ export function ProductFormDialog({
           : "Update the product details."
       }
       footer={
-        <>
+        <div className="flex justify-end space-x-2">
           <Button variant="outline" onClick={() => onOpenChange(false)}>
             Cancel
           </Button>
           <Button onClick={handleSubmit}>
             {mode === "create" ? "Create" : "Update"}
           </Button>
-        </>
+        </div>
       }
     >
       <Form className="space-y-4">
@@ -114,6 +114,14 @@ export function ProductFormDialog({
           <Input
             name="category"
             value={form.category}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <Label htmlFor="category">Rating</Label>
+          <Input
+            name="avgRating"
+            value={form.avgRating}
             onChange={handleChange}
           />
         </div>

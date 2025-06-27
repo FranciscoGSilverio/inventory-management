@@ -69,6 +69,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
     data.price = Number(data.price);
     data.stock = Number(data.stock);
+    data.avgRating = Number(data.avgRating) || 0;
 
     await updateProduct(id, data as unknown as ProductDto);
     return redirect("/");
@@ -108,7 +109,7 @@ export default function Index() {
   const handleUpdateProduct = (newProduct: ProductDto) => {
     if (!selectedProductId) return;
     const formData = objectToFormData(newProduct);
-
+    formData.set("productId", selectedProductId);
     fetcher.submit(formData, {
       method: "PUT",
     });
